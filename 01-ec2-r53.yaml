@@ -46,6 +46,6 @@
       record: "{{ item.item }}.{{ domain_name }}" ### what happens here is the loop ec2.output results will be given to the item, next item is the keyword in the logs details will be checked finds out the ec2instance name in this case "mongodb", then attaches it with our domain name: mongodb.cloudquest.com
       type: A
       ttl: 1
-      value: "{{ item.instances[0]. private_ip_address }}"
+      value: "{{ item.instances[0].private_ip_address }}"
       overwrite: true
     loop: "{{ ec2.output.results }}"
