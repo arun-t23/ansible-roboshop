@@ -13,9 +13,9 @@
       name: mondb-org
       state: present
 
-  - name: replace the info in mogo.conf of IP address to allow it for internet remote connections
+  - name: allow remote connections
     ansible.built.replace:
-      src: /etc/mongod.conf
+      path: /etc/mongod.conf
       regexp: '127.0.0.1'
       replace: '0.0.0.0'
 
