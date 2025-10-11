@@ -10,7 +10,7 @@
 
   - name: mongo installation
     ansible.builtin.package:
-      name: mondb-org
+      name: mongodb-org
       state: present
 
   - name: allow remote connections
