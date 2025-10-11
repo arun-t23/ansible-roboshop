@@ -1,0 +1,26 @@
+- name: Mongodb installation and service craation
+  hosts: mongodb
+  become: yes
+
+  tasks:
+  - name: mongo repo creation
+    ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+  - name: mongo installation
+    ansible.builtin.package:
+      name: mondb-org
+      state: present
+
+  - name: replace the info in mogo.conf of IP address to allow it for internet remote connections
+    ansible.built.replace:
+      src: /etc/mongod.conf
+      regexp: '127.0.0.1'
+      replace: '0.0.0.0'
+
+  - name: mongod start and enable
+    ansible.builtin.servive:
+      name: mongod
+      state: started
+      enabled: yes
