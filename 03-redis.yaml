@@ -3,11 +3,11 @@
   become: yes
 
   tasks:
-  - name: disable redis version
+  - name: disable default redis version
     ansible.builtin.command: dnf module disable redis -y
 
   - name: enable redis version
-    ansible.builtin.command: dnf module enable resid:7 -y
+    ansible.builtin.command: dnf module enable redis:7 -y
 
   - name: install redis
     ansible.builtin.package:
@@ -29,5 +29,5 @@
   - name: enable and start redis
     ansible.builtin.service:
       name: redis
-      state: started
       enabled: yes
+      state: started
