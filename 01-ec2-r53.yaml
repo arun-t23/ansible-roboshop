@@ -9,7 +9,7 @@
     security_group_id: sg-0e26bb3210120668f
     zone_id: "us-east-1"
     domain_name: cloudquestdev.com
-    # instances: ## we can pass instance creation through command line
+    # instances: ## we can pass instance creation through command line using -e
     # - mongodb
     # - redis
     # - mysql
