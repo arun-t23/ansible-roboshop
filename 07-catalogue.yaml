@@ -43,9 +43,9 @@
 
   - name: copy the service file
     ansible.builtin.copy:
-      src: catalogue.servive
+      src: catalogue.service
       dest: /etc/systemd/system/catalogue.service
-      remote_src: yes
+
 
   - name: mongo repo create
     ansible.builtin.copy:
