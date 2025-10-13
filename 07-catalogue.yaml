@@ -61,9 +61,27 @@
     ansible.builtin.command: mongosh mongodb.cloudquestdev.com --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
     register: catalogue_output
 
+  # - name: evaluate catalogue database
+  #   community.mongodb.mongodb.shell:
+  #     login_host: mongodb.cloudquestdev.com
+  #     eval: db.getMongo().getDBNames().indexOf('catalogue')
+  #   register: catalogue_output
+
+
   - name: print the catalogue output
     ansible.builtin.debug:
       msg: "{{ catalogue_output }}"
+
+  - name: load products in to catalogue
+    ansible.builtin.shell: mongosh --host mongodb.cloudquestdev.com </app/db/master-data.js
+    when: catalogue_output.stdout | int < 0
+
+  - name: start and enable catalogue
+    ansible.builtin.service:
+      name: catalogue
+      enabled: yes
+      state: yes
+
 
  ## - name: deamon reload
  ##   ansible.builtin.command: systemctl daemon-reload
