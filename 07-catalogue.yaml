@@ -21,6 +21,11 @@
       shell: /sbin/nologin
       home: /app
   
+  - name: remove the app directory
+    ansible.builtin.file:
+      path: /app
+      state: absent
+  
   - name: directory creation
     ansible.builtin.file:
       state: directory
