@@ -32,7 +32,7 @@
       path: /app
       state: directory
   
-  - name: install npm dependencies
+  - name: install dependencies
     community.general.npm:
       path: /app
   
