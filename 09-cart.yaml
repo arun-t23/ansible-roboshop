@@ -18,7 +18,7 @@
       name: roboshop
       comment: roboshop system user
       system: true
-      path: /sbin/nologin
+      shell: /sbin/nologin
       home: /app
     
 
