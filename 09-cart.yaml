@@ -22,15 +22,15 @@
       home: /app
     
 
-  - name: create app directory
+  - name: delete app directory if exits
     ansible.builtin.file:
       path: /app
-      state: present
+      state: absent
   
-  - name: create app directory
+  - name: create directory fo the app
     ansible.builtin.file:
-      state: directory
       path: /app
+      state: directory
   
   - name: install npm dependencies
     community.general.npm:
