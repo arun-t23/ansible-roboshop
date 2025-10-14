@@ -33,7 +33,7 @@
       state: directory
   
   - name: download the code
-    ansible.builtin.get.url:
+    ansible.builtin.get_url:
       url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip
       dest: /tmp/user.zip
 
