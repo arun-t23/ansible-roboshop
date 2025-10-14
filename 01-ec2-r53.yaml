@@ -9,16 +9,16 @@
     security_group_id: sg-0e26bb3210120668f
     zone_id: "us-east-1"
     domain_name: cloudquestdev.com
-    instances: ## we can pass instance creation through command line using -e
-    - mongodb
-    - redis
-    - mysql
-    - rabbitmq
-    - catalogue
-    - user
-    - shipping
-    - cart
-    - payment
+    # instances: ## we can pass instance creation through command line using -e
+    # - mongodb
+    # - redis
+    # - mysql
+    # - rabbitmq
+    # - catalogue
+    # - user
+    # - shipping
+    # - cart
+    # - payment
 
   tasks:
   - name: create ec2 instance
@@ -33,19 +33,19 @@
     loop: "{{ instances }}"
     register: ec2_output
   
-  - name: print the ec2_output
-    ansible.builtin.debug:
-      msg: "{{ ec2_output }}"
+  # - name: print the ec2_output
+  #   ansible.builtin.debug:
+  #     msg: "{{ ec2_output }}"
   
-  - name: print the public ip
-    ansible.builtin.debug:
-      msg: "{{ item.instances[0].public_ip_address }}"
-    loop: "{{ ec2_output.results }}"
+  # - name: print the public ip
+  #   ansible.builtin.debug:
+  #     msg: "{{ item.instances[0].public_ip_address }}"
+  #   loop: "{{ ec2_output.results }}"
 
-  - name: print the private ip
-    ansible.builtin.debug:
-      msg: "{{ item.instances[0].private_ip_address }}"
-    loop: "{{ ec2_output.results }}"
+  # - name: print the private ip
+  #   ansible.builtin.debug:
+  #     msg: "{{ item.instances[0].private_ip_address }}"
+  #   loop: "{{ ec2_output.results }}"
 
 
   - name: create route53 records
@@ -57,4 +57,16 @@
       ttl: 1
       value: "{{ item.instances[0].private_ip_address }}"
       overwrite: true
+    loop: "{{ ec2_output.results }}"
+
+  - name: create route53 record
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain_name }}"
+      record: "{{ domain_name }}"
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].public_ip_address }}"
+      overwrite: true
+    when: item.item == "frontend"
     loop: "{{ ec2_output.results }}"
