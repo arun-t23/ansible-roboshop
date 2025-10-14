@@ -13,7 +13,7 @@
       - python3-devel
 
     - name: create system user
-      ansible.buitin.user:
+      ansible.builtin.user:
         name: roboshop
         comment: roboshop system user
         system: true
