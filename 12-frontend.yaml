@@ -13,7 +13,7 @@
     ansible.builtin.dnf:
       name: nginx
       state: present
-      enabled: yes
+      
 
 
   - name: remove the html content
@@ -35,6 +35,12 @@
     ansible.builtin.unarchive:
       src: /tmp/frontend.zip
       dest: /usr/share/nginx/html
+      remote_src: yes
+
+  - name: delete default nginx conf
+    ansible.builtin.file:
+      state: absent
+      path: /etc/nginx/nginx.conf
 
   - name: create nginx configuration
     ansible.builtin.copy:
