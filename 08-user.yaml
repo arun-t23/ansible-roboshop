@@ -44,7 +44,7 @@
       remote_src: yes
 
   - name: install npm dependencies
-    ansible.general.npm:
+    community.general.npm:
       path: /app
   
   - name: create the systemd_service
