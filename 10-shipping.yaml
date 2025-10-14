@@ -63,13 +63,6 @@
       src: shipping.service
       dest: /etc/systemd/system/shipping.service
 
-  - name: daemon_reload, start & enable the shipping service
-    ansible.builtin.systemd_service:
-      name: shipping
-      state: started
-      enabled: true
-      daemon_reload: true
-
   - name: import the shipping data into sql
     community.mysql.mysql_db:
       state: import
@@ -83,4 +76,10 @@
     - /app/db/app-user.sql
     - /app/db/master-data.sql
 
+  - name: daemon_reload, start & enable the shipping service
+    ansible.builtin.systemd_service:
+      name: shipping
+      state: started
+      enabled: true
+      daemon_reload: true
  
