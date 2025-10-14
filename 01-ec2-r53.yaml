@@ -16,6 +16,9 @@
     - rabbitmq
     - catalogue
     - user
+    - shipping
+    - cart
+    - payment
 
   tasks:
   - name: create ec2 instance
