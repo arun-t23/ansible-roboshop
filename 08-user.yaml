@@ -9,7 +9,7 @@
 
   
   - name: install nodejs
-    ansible.buitin.package:
+    ansible.builtin.package:
       name: nodejs
       state: present
 
