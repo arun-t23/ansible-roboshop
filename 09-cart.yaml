@@ -16,7 +16,7 @@
   - name: systemuser creattion roboshop
     ansible.builtin.user:
       name: roboshop
-      comment: roboshop system user
+      comment: RoboShop System user
       system: true
       shell: /sbin/nologin
       home: /app
@@ -58,4 +58,6 @@
       state: started
       enabled: true
       daemon_reload: true
+
+      ##
 
