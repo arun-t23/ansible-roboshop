@@ -22,7 +22,7 @@
   - name: useradd and set permissions
     community.rabbitmq.rabbitmq_user:
       user: roboshop
-      password: roboshop123
+      password: RoboShop@1
       permissions:
         - vhost: /
           configure_priv: .*
